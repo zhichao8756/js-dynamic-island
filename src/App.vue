@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
-import DynamicIsland from "./components/DynamicIsland.vue";
+import FoldMessage from './components/FoldMessage.vue'
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import DynamicIsland from "./components/DynamicIsland.vue";
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <DynamicIsland />
+  <FoldMessage />
 </template>
 
 <style scoped>

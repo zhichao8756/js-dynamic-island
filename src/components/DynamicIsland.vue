@@ -1,7 +1,7 @@
 <template>
-  <div class="dynamic-container ">灵动岛</div>
-  <svg class="morphing-demo polymorph"></svg>
-  <div>{{ isShow }}</div>
+  <div class="dynamic-container ">
+    <slot name="operation"></slot>
+  </div>
   <div>
     <button @click="showIsland">测试</button>
   </div>
@@ -10,32 +10,26 @@
 <script setup>
 import { ref } from 'vue'
 import anime from 'animejs/lib/anime.es.js'
-let isShow = ref(true)
+defineOptions({
+  name: 'MyItem'
+})
+const isShow = ref(true)
 function showIsland(state) {
 /*  console.log(state)
   isShow.value = !state
   console.log(isShow) */
   anime({
     targets: '.dynamic-container',
-    /*translateX: [
-      { value: 250, duration: 1000, delay: 500 },
-      { value: 0, duration: 1000, delay: 500 }
-    ],
-    translateY: [
-      { value: 40, duration: 500 },
-      { value: 40, duration: 500, delay: 1000 },
-      { value: 0, duration: 500, delay: 1000 }
-    ],*/
     height: [
-      { value: 40, duration: 200 },
+      { value: 30, duration: 200 }
     ],
     scaleX: [
-      { value: 0, duration: 300, delay: 250, easing: 'linear' },
+      { value: 0, duration: 150, delay: 250, easing: 'linear' }
     ],
     scaleY: 1,
     easing: 'linear',
     duration: 300
-  });
+  })
 }
 </script>
 
