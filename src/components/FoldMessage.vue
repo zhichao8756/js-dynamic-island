@@ -2,7 +2,7 @@
   <div>
     <p>折叠消息</p>
     <div
-        class="dynamic-container"
+        class="fold-container"
         key="1"
         v-show="visible"
     >
@@ -22,7 +22,7 @@
         <slot name="operation"></slot>
       </div>
     </div>
-    <div>
+    <div style="margin-top: 20px">
       <button @click="disappearIsland">隐藏</button>
       <button @click="showIsland">显示</button>
     </div>
@@ -49,23 +49,10 @@ const typeMap = {
 const visible = ref(true)
 const message = ref('ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing')
 const type = ref('error')
-function beforeEnter() {
-  anime({
-    targets: '.dynamic-container',
-    height: [
-      { value: 500, duration: 150 }
-    ],
-    scaleX: [
-      { value: 1, duration: 150, easing: 'linear' }
-    ],
-    easing: 'linear',
-    duration: 300
-  })
-}
 function beforeLeave() {
   return new Promise((resolve, reject) => {
     anime({
-      targets: '.dynamic-container',
+      targets: '.fold-container',
       scaleY: [
         { value: 0.2, duration: 200 }
       ],
@@ -81,7 +68,7 @@ function beforeLeave() {
 async function showIsland() {
   visible.value = true
   anime({
-    targets: '.dynamic-container',
+    targets: '.fold-container',
     scaleX: [
       { value: 1, duration: 150, easing: 'linear' }
     ],
@@ -105,9 +92,8 @@ async function disappearIsland() {
   })
 }
 </script>
-
 <style scoped>
-.dynamic-container {
+.fold-container {
   background: #1a1a1a;
   width: 300px;
   min-height: 100px;

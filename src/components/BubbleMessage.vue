@@ -1,30 +1,52 @@
 <template>
   <div>
+
+    <!-- 粘滞效果   -->
+    <svg width="0" height="0" style="position:absolute;">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </defs>
+    </svg>
     <p>气泡消息</p>
     <div
-        class="dynamic-container"
-        key="1"
-        v-show="visible"
+      class="bubble-container"
+      key="1"
+      v-show="visible"
     >
       <div class="message-box">
         <div
-            :class="[
-          'icon',
-          `icon-${type}`
-        ]"
+          class="avatar"
+          :style="{background: randomBg(), borderRadius: '50%'}"
         >
+          <img
+            class="avatar-container"
+            v-if="message.avatar"
+            :src="message.avatar"
+            alt=""
+          >
+          <span v-else>{{ getUserName(message.user) }}</span>
         </div>
         <div class="message-text">
         <span>
-          {{ message }}
+          {{ message.message }}
         </span>
         </div>
-        <slot name="operation"></slot>
       </div>
-
+      <!-- 状态栏  -->
+      <div class="status-container" >
+        <svg  class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+          <circle ref="path" class="circle path" cx="16" cy="16" r="16" stroke="#0c3" stroke-width="3" />
+          <path ref="path" class="check path" d="M9 16l5 5 9-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></path>
+        </svg>
+      </div>
     </div>
 
     <div>
+      <div>{{statusVisible}}</div>
       <button @click="disappearIsland">隐藏</button>
       <button @click="showIsland">显示</button>
     </div>
@@ -33,6 +55,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { reactive } from 'vue'
 import anime from 'animejs/lib/anime.es.js'
 import { getCurrentInstance } from 'vue'
 
@@ -46,27 +69,20 @@ const typeMap = {
   success: 'success',
   error: 'error'
 }
+const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae']
 
 const visible = ref(true)
-const message = ref('ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing')
+const statusVisible = ref(false)
+const message = reactive({
+  user: 'wang',
+  message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
+  avatar: 'https://joeschmoe.io/api/v1/random'
+})
 const type = ref('error')
-function beforeEnter() {
-  anime({
-    targets: '.dynamic-container',
-    height: [
-      { value: 500, duration: 150 }
-    ],
-    scaleX: [
-      { value: 1, duration: 150, easing: 'linear' }
-    ],
-    easing: 'linear',
-    duration: 300
-  })
-}
 function beforeLeave() {
   return new Promise((resolve, reject) => {
     anime({
-      targets: '.dynamic-container',
+      targets: '.bubble-container',
       scaleY: [
         { value: 0.2, duration: 200 }
       ],
@@ -79,10 +95,16 @@ function beforeLeave() {
     resolve()
   })
 }
+function randomBg() {
+  const min = 0
+  const max = 3
+  const rand = Math.floor(Math.random() * (max - min + 1)) + min
+  return colorList[rand]
+}
 async function showIsland() {
   visible.value = true
   anime({
-    targets: '.dynamic-container',
+    targets: '.bubble-container',
     scaleX: [
       { value: 1, duration: 150, easing: 'linear' }
     ],
@@ -92,28 +114,80 @@ async function showIsland() {
     easing: 'linear',
     duration: 300
   })
-  await proxy.$utils.sleep(500).then((res) => {
+  const check = document.getElementsByClassName('check')[0]
+  const circle = document.getElementsByClassName('circle')[0]
+  check.style.strokeDasharray = 20
+  check.style.strokeDashoffset = 20
+  circle.style.strokeDasharray = 99
+  circle.style.strokeDashoffset = 99
+  await proxy.$utils.sleep(300)
+  anime({
+    targets: '.status-container',
+    translateX: [
+      { value: 70, duration: 700, easing: 'easeInCubic' },
+      { value: 0, duration: 350, delay: 2000, easing: 'linear' }
+    ],
+    easing: 'linear',
+    duration: 300
+  })
+  await proxy.$utils.sleep(1000)
 
+  await proxy.$utils.sleep(300)
+  drawCircle()
+}
+function drawCircle() {
+  /* const checkTimeline = anime.timeline(
+    { autoplay: true, direction: 'alternate', loop: false }
+  )
+  checkTimeline.add(
+    {
+      targets: '.checkmark',
+      scale: [{ value: [0, 1], duration: 600, easing: 'easeOutQuad', delay: 350 }] }
+  )*/
+  anime({
+    targets: '.check',
+    strokeDasharray: anime.setDashoffset,
+    /* strokeDasharray: [
+      { value: 314, duration: 350, easing: 'linear' },
+      { value: 0, duration: 350, delay: 350, easing: 'linear' }
+    ],*/
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: 'easeInOutSine',
+    duration: 1000,
+    delay: function(el, i) { return i * 250 },
+    direction: 'alternate',
+    loop: false
+  })
+  anime({
+    targets: '.circle',
+    strokeDasharray: anime.setDashoffset,
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: 'easeInOutSine',
+    duration: 1000,
+    delay: function(el, i) { return i * 250 },
+    direction: 'alternate',
+    loop: false
   })
 }
 async function disappearIsland() {
   await beforeLeave()
-  console.log(456)
-  console.log(proxy.$utils)
   await proxy.$utils.sleep(500).then((res) => {
-    console.log(visible)
     visible.value = false
+    statusVisible.value = false
   })
+}
+function getUserName(name) {
+  return name.substring(0, 1)
 }
 </script>
 
 <style scoped>
-.dynamic-container {
+.bubble-container {
   background: #1a1a1a;
-  width: 300px;
-  min-height: 100px;
-  border-radius: 24px;
-  padding: 16px;
+  width: 250px;
+  border-radius: 15px;
+  padding: 8px 12px;
+  filter: url("#goo");
 }
 .message-box {
   display: flex;
@@ -122,18 +196,63 @@ async function disappearIsland() {
   height: 100%;
 }
 .message-text {
-  width: 200px;
+  width: 180px;
   margin-left: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
+.avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 25px;
+}
+.avatar-container {
+  width: 100%;
+  height: 100%;
+}
+.status-container {
+  width: 35px;
+  height: 35px;
+  background: #1a1a1a;
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.path {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+}
+.circle {
+  stroke-dasharray: 99;
+  stroke-dashoffset: 99;
+}
+/*.check {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 10s linear forwards;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}*/
 .icon {
   display: inline-block;
-  width: 32px;
-  height: 32px;
+  width: 16px;
+  height: 16px;
+  background-size: 100% 100%;
 }
 .icon-error {
   background: url('../assets/error.png') no-repeat;
+  background-size: 100% 100%;
 }
 .icon-success {
   background: url('../assets/success.png') no-repeat;
+  background-size: 100% 100%;
 }
 </style>
