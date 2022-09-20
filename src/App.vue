@@ -3,6 +3,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
 import FoldMessage from './components/FoldMessage.vue'
+import BubbleMessage from './components/BubbleMessage.vue'
 </script>
 
 <template>
@@ -14,7 +15,15 @@ import FoldMessage from './components/FoldMessage.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <FoldMessage />
+  <div class="demo-container">
+    <div>
+      <FoldMessage />
+    </div>
+    <div>
+      <BubbleMessage />
+    </div>
+
+  </div>
 </template>
 
 <style scoped>
@@ -28,5 +37,10 @@ import FoldMessage from './components/FoldMessage.vue'
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+.demo-container {
+  width: 1000px;
+  display: flex;
+  justify-content: space-around;
 }
 </style>

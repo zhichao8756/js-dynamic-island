@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>折叠消息</p>
+    <p>气泡消息</p>
     <div
         class="dynamic-container"
         key="1"
@@ -21,13 +21,14 @@
         </div>
         <slot name="operation"></slot>
       </div>
+
     </div>
+
     <div>
       <button @click="disappearIsland">隐藏</button>
       <button @click="showIsland">显示</button>
     </div>
   </div>
-
 </template>
 
 <script setup>
@@ -36,7 +37,7 @@ import anime from 'animejs/lib/anime.es.js'
 import { getCurrentInstance } from 'vue'
 
 defineOptions({
-  name: 'FoldMessage'
+  name: 'BubbleMessage'
 })
 const { proxy } = getCurrentInstance()
 
@@ -121,7 +122,7 @@ async function disappearIsland() {
   height: 100%;
 }
 .message-text {
-  width: 260px;
+  width: 200px;
   margin-left: 8px;
 }
 .icon {
