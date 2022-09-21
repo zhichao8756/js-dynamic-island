@@ -120,19 +120,16 @@ async function showIsland() {
   check.style.strokeDashoffset = 20
   circle.style.strokeDasharray = 99
   circle.style.strokeDashoffset = 99
-  await proxy.$utils.sleep(300)
+  await proxy.$utils.sleep(100)
   anime({
     targets: '.status-container',
     translateX: [
-      { value: 70, duration: 700, easing: 'easeInCubic' },
-      { value: 0, duration: 350, delay: 2000, easing: 'linear' }
+      { value: 65, duration: 500, easing: 'easeInCubic' },
+      { value: 0, duration: 350, delay: 1500, easing: 'linear' }
     ],
-    easing: 'linear',
-    duration: 300
+    easing: 'linear'
   })
   await proxy.$utils.sleep(1000)
-
-  await proxy.$utils.sleep(300)
   drawCircle()
 }
 function drawCircle() {
