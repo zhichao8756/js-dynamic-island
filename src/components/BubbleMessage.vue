@@ -38,13 +38,21 @@
       </div>
       <!-- 状态栏  -->
       <div class="status-container" >
-        <svg  class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+        <svg v-if="message.type === 'success'" class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
           <circle ref="path" class="circle path" cx="16" cy="16" r="16" stroke="#0c3" stroke-width="3" />
-          <path ref="path" class="check path" d="M9 16l5 5 9-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></path>
+          <path  ref="path" class="check path" d="M9 16l5 5 9-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></path>
         </svg>
+        <div v-if="message.type === 'error'">
+          <svg style="margin-top: 6px" class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+            <circle ref="path" class="circle path" cx="16" cy="16" r="16" stroke="#d81e06" stroke-width="3" />
+            <g ref="path" class="check path">
+              <line x1="8" y1="8" x2="22" y2="22" data-v-f6bb0465="" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></line>
+              <line x1="22" y1="8" x2="8" y2="22" data-v-f6bb0465="" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></line>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
-
     <div>
       <div>{{statusVisible}}</div>
       <button @click="disappearIsland">隐藏</button>
@@ -76,7 +84,8 @@ const statusVisible = ref(false)
 const message = reactive({
   user: 'wang',
   message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
-  avatar: 'https://joeschmoe.io/api/v1/random'
+  avatar: 'https://joeschmoe.io/api/v1/random',
+  type: 'error'
 })
 const type = ref('error')
 function beforeLeave() {
@@ -116,8 +125,10 @@ async function showIsland() {
   })
   const check = document.getElementsByClassName('check')[0]
   const circle = document.getElementsByClassName('circle')[0]
-  check.style.strokeDasharray = 20
-  check.style.strokeDashoffset = 20
+  if (message.type === 'success') {
+    check.style.strokeDasharray = 20
+    check.style.strokeDashoffset = 20
+  }
   circle.style.strokeDasharray = 99
   circle.style.strokeDashoffset = 99
   await proxy.$utils.sleep(100)
@@ -239,10 +250,11 @@ function getUserName(name) {
   }
 }*/
 .icon {
-  display: inline-block;
   width: 16px;
   height: 16px;
-  background-size: 100% 100%;
+  position: absolute;
+  top: 9px;
+  left: 10px;
 }
 .icon-error {
   background: url('../assets/error.png') no-repeat;
