@@ -1,6 +1,5 @@
 <template>
-  <div>
-
+  <div style="position: absolute; top: 50%; left: 50%">
     <!-- 粘滞效果   -->
     <svg width="0" height="0" style="position:absolute;">
       <defs>
@@ -11,22 +10,21 @@
         </filter>
       </defs>
     </svg>
-    <p>气泡消息</p>
     <div
-      class="bubble-container"
-      key="1"
-      v-show="visible"
+        class="bubble-container"
+        key="1"
+        v-show="visible"
     >
       <div class="message-box">
         <div
-          class="avatar"
-          :style="{background: randomBg(), borderRadius: '50%'}"
+            class="avatar"
+            :style="{background: randomBg(), borderRadius: '50%'}"
         >
           <img
-            class="avatar-container"
-            v-if="message.avatar"
-            :src="message.avatar"
-            alt=""
+              class="avatar-container"
+              v-if="message.avatar"
+              :src="message.avatar"
+              alt=""
           >
           <span v-else>{{ getUserName(message.user) }}</span>
         </div>
@@ -53,6 +51,7 @@
         </div>
       </div>
     </div>
+
     <div>
       <div>{{statusVisible}}</div>
       <button @click="disappearIsland">隐藏</button>
@@ -66,9 +65,16 @@ import { ref } from 'vue'
 import { reactive } from 'vue'
 import anime from 'animejs/lib/anime.es.js'
 import { getCurrentInstance } from 'vue'
-
+import { onMounted, onBeforeUnmount, nextTick } from 'vue'
+import utils from '../utils/utils.js'
 defineOptions({
   name: 'BubbleMessage'
+})
+defineProps({
+  type: String,
+  user: String,
+  message: String,
+  avatar: String
 })
 const { proxy } = getCurrentInstance()
 
@@ -79,7 +85,7 @@ const typeMap = {
 }
 const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae']
 
-const visible = ref(true)
+const visible = ref(false)
 const statusVisible = ref(false)
 const message = reactive({
   user: 'wang',
@@ -88,12 +94,21 @@ const message = reactive({
   type: 'error'
 })
 const type = ref('error')
+onMounted(async() => {
+  console.log(`the component is now mounted.`)
+  /* proxy.$utils = utils
+  showIsland()*/
+  // await nextTick()
+  proxy.$utils = utils
+  showIsland()
+})
+
 function beforeLeave() {
   return new Promise((resolve, reject) => {
     anime({
       targets: '.bubble-container',
       scaleY: [
-        { value: 0.2, duration: 200 }
+        { value: 0.2, duration: 200, delay: 200 }
       ],
       scaleX: [
         { value: 0, duration: 150, delay: 250, easing: 'linear' }
@@ -101,6 +116,7 @@ function beforeLeave() {
       easing: 'linear',
       duration: 300
     })
+    console.log(123)
     resolve()
   })
 }
@@ -112,17 +128,26 @@ function randomBg() {
 }
 async function showIsland() {
   visible.value = true
-  anime({
+  // const bubble = document.getElementsByClassName('bubble-container')[0]
+  // bubble.style.scaleX = 0
+  // bubble.style.scaleY = 0
+  const bubble = document.getElementsByClassName('bubble-container')[0]
+  console.log(bubble)
+  bubble.classList.add('animateScale')
+
+  /* anime({
     targets: '.bubble-container',
     scaleX: [
-      { value: 1, duration: 150, easing: 'linear' }
+      { value: 0, duration: 150, easing: 'linear' }
+      { value: 1, duration: 150, delay: 1000, easing: 'linear' }
     ],
     scaleY: [
-      { value: 1, duration: 150, easing: 'linear' }
+      { value: 0, duration: 150, easing: 'linear' }
+      { value: 1, duration: 150, delay: 1000, easing: 'linear' }
     ],
     easing: 'linear',
     duration: 300
-  })
+  })*/
   const check = document.getElementsByClassName('check')[0]
   const circle = document.getElementsByClassName('circle')[0]
   if (message.type === 'success') {
@@ -187,9 +212,23 @@ async function disappearIsland() {
 function getUserName(name) {
   return name.substring(0, 1)
 }
+onBeforeUnmount(() => {
+  disappearIsland()
+})
 </script>
 
 <style scoped>
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.animateScale {
+  animation: scaleIn 300ms linear;
+}
 .bubble-container {
   background: #1a1a1a;
   width: 250px;

@@ -4,6 +4,12 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import FoldMessage from './components/FoldMessage.vue'
 import BubbleMessage from './components/BubbleMessage.vue'
+import bubbleMessage from './BubbleMessage.js'
+function test() {
+  bubbleMessage({
+    message: '1111'
+  })
+}
 </script>
 
 <template>
@@ -20,7 +26,8 @@ import BubbleMessage from './components/BubbleMessage.vue'
       <FoldMessage />
     </div>
     <div>
-      <BubbleMessage />
+<!--      <BubbleMessage />-->
+      <button @click="test">测试</button>
     </div>
 
   </div>
