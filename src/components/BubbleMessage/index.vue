@@ -1,5 +1,5 @@
 <template>
-  <div style="position: absolute; top: 50%; left: 50%">
+  <div class="location">
     <!-- 粘滞效果   -->
     <svg width="0" height="0" style="position:absolute;">
       <defs>
@@ -22,25 +22,25 @@
         >
           <img
               class="avatar-container"
-              v-if="message.avatar"
-              :src="message.avatar"
+              v-if="avatar"
+              :src="avatar"
               alt=""
           >
-          <span v-else>{{ getUserName(message.user) }}</span>
+          <span v-else>{{ getUserName(user) }}</span>
         </div>
         <div class="message-text">
         <span>
-          {{ message.message }}
+          {{ message }}
         </span>
         </div>
       </div>
       <!-- 状态栏  -->
       <div class="status-container" >
-        <svg v-if="message.type === 'success'" class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+        <svg v-if="type === 'success'" class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
           <circle ref="path" class="circle path" cx="16" cy="16" r="16" stroke="#0c3" stroke-width="3" />
           <path  ref="path" class="check path" d="M9 16l5 5 9-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></path>
         </svg>
-        <div v-if="message.type === 'error'">
+        <div v-if="type === 'error'">
           <svg style="margin-top: 6px" class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
             <circle ref="path" class="circle path" cx="16" cy="16" r="16" stroke="#d81e06" stroke-width="3" />
             <g ref="path" class="check path">
@@ -52,25 +52,21 @@
       </div>
     </div>
 
-    <div>
-      <div>{{statusVisible}}</div>
-      <button @click="disappearIsland">隐藏</button>
-      <button @click="showIsland">显示</button>
-    </div>
   </div>
 </template>
-
+<script>
+export default {
+  name: 'BubbleMessage'
+}
+</script>
 <script setup>
 import { ref } from 'vue'
-import { reactive } from 'vue'
 import anime from 'animejs/lib/anime.es.js'
 import { getCurrentInstance } from 'vue'
 import { onMounted, onBeforeUnmount, nextTick } from 'vue'
-import utils from '../utils/utils.js'
-defineOptions({
-  name: 'BubbleMessage'
-})
-defineProps({
+import utils from '../../utils/utils.js'
+
+const props = defineProps({
   type: String,
   user: String,
   message: String,
@@ -78,27 +74,13 @@ defineProps({
 })
 const { proxy } = getCurrentInstance()
 
-// 图标映射
-const typeMap = {
-  success: 'success',
-  error: 'error'
-}
 const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae']
 
 const visible = ref(false)
 const statusVisible = ref(false)
-const message = reactive({
-  user: 'wang',
-  message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
-  avatar: 'https://joeschmoe.io/api/v1/random',
-  type: 'error'
-})
-const type = ref('error')
 onMounted(async() => {
   console.log(`the component is now mounted.`)
-  /* proxy.$utils = utils
-  showIsland()*/
-  // await nextTick()
+  await nextTick()
   proxy.$utils = utils
   showIsland()
 })
@@ -150,7 +132,7 @@ async function showIsland() {
   })*/
   const check = document.getElementsByClassName('check')[0]
   const circle = document.getElementsByClassName('circle')[0]
-  if (message.type === 'success') {
+  if (props.type === 'success') {
     check.style.strokeDasharray = 20
     check.style.strokeDashoffset = 20
   }
@@ -167,6 +149,8 @@ async function showIsland() {
   })
   await proxy.$utils.sleep(1000)
   drawCircle()
+  await proxy.$utils.sleep(2000)
+  disappearIsland()
 }
 function drawCircle() {
   /* const checkTimeline = anime.timeline(
@@ -217,7 +201,7 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @keyframes scaleIn {
   from {
     transform: scale(0);

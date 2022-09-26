@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
-import BubbleMessage from './components/BubbleMessage.vue'
-import { ref } from 'vue'
+import BubbleMessage from './index.vue'
 function bubbleMessage({ title, message, avatar, type }) {
   // 实例化组件，createApp第二个参数是props
   const bubbleMessageInstance = createApp(BubbleMessage, {
@@ -23,10 +22,10 @@ function bubbleMessage({ title, message, avatar, type }) {
   // 卸载组件
   window.setTimeout(() => {
     unmount()
-  }, 8000)
+  }, 4000)
   const unmount = () => {
     bubbleMessageInstance.unmount()
-    // document.body.removeChild(parentNode)
+    document.body.removeChild(parentNode)
   }
   // 创建一个挂载容器
   const parentNode = document.createElement('div')

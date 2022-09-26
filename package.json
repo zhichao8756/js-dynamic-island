@@ -1,8 +1,13 @@
 {
   "name": "js-dynamic-island",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.0.3",
   "type": "module",
+  "description": "一个灵感来源于ios灵动岛动画的消息提示组件",
+  "main": "js-dynamic-island/js-dynamic-island.js",
+  "keywords": ["js-dynamic-island","dynamic-island","DYNAMIC-ISLAND","DYNAMICISLAND","vue3-dynamic-island"],
+  "author": "zhichao",
+  "license": "SEE LICENSE IN <README>",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,12 +15,16 @@
   },
   "dependencies": {
     "animejs": "^3.2.1",
+    "node-sass": "^7.0.3",
+    "path": "^0.12.7",
     "vue": "^3.2.37"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",
     "eslint": "^8.23.1",
     "eslint-plugin-vue": "^9.4.0",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.0.2",
     "unplugin-vue-define-options": "^0.11.2",
     "vite": "^3.1.0"
   }

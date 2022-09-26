@@ -1,13 +1,20 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-// import HelloWorld from './components/HelloWorld.vue'
-import FoldMessage from './components/FoldMessage.vue'
-import BubbleMessage from './components/BubbleMessage.vue'
-import bubbleMessage from './BubbleMessage.js'
-function test() {
-  bubbleMessage({
-    message: '1111'
+// import FoldMessage from './components/FoldMessage/FoldMessage.js'
+// import bubbleMessage from './components/BubbleMessage/BubbleMessage.js'
+import { FoldMessage, BubbleMessage } from '@/components/index.js' // 导入
+
+function testBubble() {
+  BubbleMessage({
+    user: 'zack',
+    message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
+    avatar: 'https://joeschmoe.io/api/v1/random',
+    type: 'success'
+  })
+}
+function fold() {
+  FoldMessage({
+    message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
+    type: 'success'
   })
 }
 </script>
@@ -23,11 +30,12 @@ function test() {
   </div>
   <div class="demo-container">
     <div>
-      <FoldMessage />
+<!--      <FoldMessage />-->
     </div>
     <div>
 <!--      <BubbleMessage />-->
-      <button @click="test">测试</button>
+      <button @click="fold">测试折叠</button>
+      <button @click="testBubble">测试气泡</button>
     </div>
 
   </div>

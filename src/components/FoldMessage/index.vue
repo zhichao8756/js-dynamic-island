@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <p>折叠消息</p>
+  <div class="location">
     <div
         class="fold-container"
         key="1"
@@ -22,33 +21,38 @@
         <slot name="operation"></slot>
       </div>
     </div>
-    <div style="margin-top: 20px">
+<!--    <div style="margin-top: 20px">
       <button @click="disappearIsland">隐藏</button>
       <button @click="showIsland">显示</button>
-    </div>
+    </div>-->
   </div>
 
 </template>
-
+<script>
+export default {
+  name: 'FoldMessage'
+}
+</script>
 <script setup>
-import { ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import anime from 'animejs/lib/anime.es.js'
 import { getCurrentInstance } from 'vue'
+import utils from '../../utils/utils.js'
 
-defineOptions({
-  name: 'FoldMessage'
-})
 const { proxy } = getCurrentInstance()
-
+const props = defineProps({
+  message: String,
+  type: String
+})
 // 图标映射
-const typeMap = {
-  success: 'success',
-  error: 'error'
-}
 
 const visible = ref(true)
-const message = ref('ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing')
-const type = ref('error')
+onMounted(async() => {
+  console.log(`the component is now mounted.`)
+  await nextTick()
+  proxy.$utils = utils
+  showIsland()
+})
 function beforeLeave() {
   return new Promise((resolve, reject) => {
     anime({
@@ -67,7 +71,23 @@ function beforeLeave() {
 }
 async function showIsland() {
   visible.value = true
-  anime({
+  const fold = document.getElementsByClassName('fold-container')[0]
+  fold.classList.add('animateScale')
+
+  /* anime({
+    targets: '.bubble-container',
+    scaleX: [
+      { value: 0, duration: 150, easing: 'linear' }
+      { value: 1, duration: 150, delay: 1000, easing: 'linear' }
+    ],
+    scaleY: [
+      { value: 0, duration: 150, easing: 'linear' }
+      { value: 1, duration: 150, delay: 1000, easing: 'linear' }
+    ],
+    easing: 'linear',
+    duration: 300
+  })*/
+  /* anime({
     targets: '.fold-container',
     scaleX: [
       { value: 1, duration: 150, easing: 'linear' }
@@ -77,22 +97,43 @@ async function showIsland() {
     ],
     easing: 'linear',
     duration: 300
-  })
-  await proxy.$utils.sleep(500).then((res) => {
-
-  })
+  })*/
+  /* anime({
+    targets: '.fold-container',
+    scaleX: [
+      { value: 0, duration: 150, easing: 'linear' },
+      { value: 1, duration: 150, delay: 150, easing: 'linear' }
+    ],
+    scaleY: [
+      { value: 0, duration: 150, easing: 'linear' },
+      { value: 1, duration: 150, delay: 1000, easing: 'linear' }
+    ],
+    easing: 'linear',
+    duration: 300
+  })*/
+  await proxy.$utils.sleep(1000)
+  disappearIsland()
 }
 async function disappearIsland() {
   await beforeLeave()
-  console.log(456)
-  console.log(proxy.$utils)
   await proxy.$utils.sleep(500).then((res) => {
     console.log(visible)
     visible.value = false
   })
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.animateScale {
+  animation: scaleIn 300ms linear;
+}
 .fold-container {
   background: #1a1a1a;
   width: 300px;
@@ -116,9 +157,9 @@ async function disappearIsland() {
   height: 32px;
 }
 .icon-error {
-  background: url('../assets/error.png') no-repeat;
+  background: url('../../assets/error.png') no-repeat;
 }
 .icon-success {
-  background: url('../assets/success.png') no-repeat;
+  background: url('../../assets/success.png') no-repeat;
 }
 </style>
