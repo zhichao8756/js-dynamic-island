@@ -79,7 +79,6 @@ const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae']
 const visible = ref(false)
 const statusVisible = ref(false)
 onMounted(async() => {
-  console.log(`the component is now mounted.`)
   await nextTick()
   proxy.$utils = utils
   showIsland()
@@ -98,7 +97,6 @@ function beforeLeave() {
       easing: 'linear',
       duration: 300
     })
-    console.log(123)
     resolve()
   })
 }

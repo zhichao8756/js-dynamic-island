@@ -48,7 +48,6 @@ const props = defineProps({
 
 const visible = ref(true)
 onMounted(async() => {
-  console.log(`the component is now mounted.`)
   await nextTick()
   proxy.$utils = utils
   showIsland()
@@ -120,7 +119,6 @@ async function showIsland() {
 async function disappearIsland() {
   await beforeLeave()
   await proxy.$utils.sleep(500).then((res) => {
-    console.log(visible)
     visible.value = false
   })
 }

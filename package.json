@@ -5,10 +5,19 @@
   "type": "module",
   "description": "一个灵感来源于ios灵动岛动画的消息提示组件",
   "main": "js-dynamic-island/js-dynamic-island.js",
-  "keywords": ["js-dynamic-island","dynamic-island","DYNAMIC-ISLAND","DYNAMICISLAND","vue3-dynamic-island"],
+  "keywords": [
+    "js-dynamic-island",
+    "dynamic-island",
+    "DYNAMIC-ISLAND",
+    "DYNAMICISLAND",
+    "vue3-dynamic-island"
+  ],
   "author": "zhichao",
-  "license": "SEE LICENSE IN <README>",
-  "repository": "https://github.com/zhichao8756/js-dynamic-island",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhichao8756/js-dynamic-island.git"
+  },
   "homepage": "https://zhichao8756.github.io/deploy-demo/",
   "scripts": {
     "dev": "vite",
@@ -29,5 +38,8 @@
     "sass-loader": "^13.0.2",
     "unplugin-vue-define-options": "^0.11.2",
     "vite": "^3.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/zhichao8756/js-dynamic-island/issues"
   }
 }
