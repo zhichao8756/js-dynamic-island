@@ -114,8 +114,9 @@ async function showIsland() {
   // bubble.style.scaleX = 0
   // bubble.style.scaleY = 0
   const bubble = document.getElementsByClassName('bubble-container')[0]
-  console.log(bubble)
+  const text = document.getElementsByClassName('message-text')[0]
   bubble.classList.add('animateScale')
+  text.classList.add('animateText')
 
   /* anime({
     targets: '.bubble-container',
@@ -212,6 +213,19 @@ onBeforeUnmount(() => {
 }
 .animateScale {
   animation: scaleIn 300ms linear;
+}
+@keyframes messageFilter {
+  0% {
+    transform: scale(0);
+    transform: translateY(-20px);
+    filter: blur(10px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animateText {
+  animation: messageFilter 800ms linear;
 }
 .bubble-container {
   background: #1a1a1a;

@@ -72,7 +72,10 @@ function beforeLeave() {
 async function showIsland() {
   visible.value = true
   const fold = document.getElementsByClassName('fold-container')[0]
+  const text = document.getElementsByClassName('message-text')[0]
   fold.classList.add('animateScale')
+
+  text.classList.add('animateText')
 
   /* anime({
     targets: '.bubble-container',
@@ -111,7 +114,7 @@ async function showIsland() {
     easing: 'linear',
     duration: 300
   })*/
-  await proxy.$utils.sleep(1000)
+  await proxy.$utils.sleep(2000)
   disappearIsland()
 }
 async function disappearIsland() {
@@ -124,15 +127,32 @@ async function disappearIsland() {
 </script>
 <style lang="scss" scoped>
 @keyframes scaleIn {
-  from {
+  0% {
     transform: scale(0);
   }
-  to {
+  80% {
+    transform: scale(1.04);
+  }
+  100% {
     transform: scale(1);
   }
 }
 .animateScale {
-  animation: scaleIn 300ms linear;
+  animation: scaleIn 600ms linear;
+}
+@keyframes messageFilter {
+  0% {
+    transform: scale(0);
+    transform: translateY(-20px);
+    filter: blur(10px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animateText {
+  animation: messageFilter 800ms linear;
+
 }
 .fold-container {
   background: #1a1a1a;
@@ -144,12 +164,13 @@ async function disappearIsland() {
 .message-box {
   display: flex;
   align-items: center;
-  color: #ffffff;
+
   height: 100%;
 }
 .message-text {
   width: 260px;
   margin-left: 8px;
+  color: #ffffff;
 }
 .icon {
   display: inline-block;
