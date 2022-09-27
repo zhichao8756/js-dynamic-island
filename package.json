@@ -8,6 +8,8 @@
   "keywords": ["js-dynamic-island","dynamic-island","DYNAMIC-ISLAND","DYNAMICISLAND","vue3-dynamic-island"],
   "author": "zhichao",
   "license": "SEE LICENSE IN <README>",
+  "repository": "https://github.com/zhichao8756/js-dynamic-island",
+  "homepage": "https://zhichao8756.github.io/deploy-demo/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
