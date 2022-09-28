@@ -31,6 +31,33 @@ MessageBox({
     console.log('cancel')
 })
 ```
+## API Docs
+- BubbleMessage
+
+
+| 参数      | 说明   | 类型     | 可选值           |
+|---------|------|--------|---------------|
+| user    | 用户名  | String | -             |
+| message | 提示内容 | String | -             |
+| avatar  | 用户头像 | String | -             |
+| type    | 提示类型 | String | success/error |
+
+- FoldMessage
+
+
+| 参数      | 说明   | 类型     | 可选值           |
+|---------|------|--------|---------------|
+| message | 提示内容 | String | -             |
+| type    | 提示类型 | String | success/error |
+
+- MessageBox
+
+    支持promise异步回调
+
+| 参数      | 说明   | 类型     | 可选值 |
+|---------|------|--------|-----|
+| title   | 提示标题 | String | -   |
+| content | 提示内容 | String | -   |
 ## License
 
 js-dynamic-island is open source software licensed as MIT.

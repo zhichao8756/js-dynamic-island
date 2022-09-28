@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import BubbleMessage from './index.vue'
-function bubbleMessage({ title, message, avatar, type }) {
+function bubbleMessage({ user, message, avatar, type }) {
   // 实例化组件，createApp第二个参数是props
   const bubbleMessageInstance = createApp(BubbleMessage, {
-    user: title || '',
+    user: user || '',
     message: message || '',
     type: type || 'success',
     avatar: avatar || 'https://joeschmoe.io/api/v1/random'
