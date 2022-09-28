@@ -32,7 +32,7 @@ MessageBox({
 })
 ```
 ## API Docs
-- BubbleMessage
+### BubbleMessage
 
 
 | 参数      | 说明   | 类型     | 可选值           |
@@ -42,7 +42,7 @@ MessageBox({
 | avatar  | 用户头像 | String | -             |
 | type    | 提示类型 | String | success/error |
 
-- FoldMessage
+### FoldMessage
 
 
 | 参数      | 说明   | 类型     | 可选值           |
@@ -50,7 +50,7 @@ MessageBox({
 | message | 提示内容 | String | -             |
 | type    | 提示类型 | String | success/error |
 
-- MessageBox
+### MessageBox
 
     支持promise异步回调
 
