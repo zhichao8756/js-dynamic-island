@@ -26,13 +26,6 @@ function box() {
   }).catch(() => {
     console.log('cancel')
   })
-  /* MessageBox({
-    title: 'This is a title',
-    content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
-    callback: () => {
-      console.log(1222222)
-    }
-  })*/
 }
 </script>
 

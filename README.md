@@ -9,7 +9,7 @@ $ npm i js-dynamic-island
 ```
 ## Quick Start
 ```javascript
-import { BubbleMessage, FoldMessage } from 'js-dynamic-island'
+import { BubbleMessage, FoldMessage, MessageBox } from 'js-dynamic-island'
 import "../node_modules/js-dynamic-island/style.css";
 
 BubbleMessage({
@@ -21,6 +21,14 @@ BubbleMessage({
 FoldMessage({
     message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
     type: 'success'
+})
+MessageBox({
+    title: 'This is a title',
+    content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing'
+}).then(() => {
+    console.log('confirm')
+}).catch(() => {
+    console.log('cancel')
 })
 ```
 ## License
