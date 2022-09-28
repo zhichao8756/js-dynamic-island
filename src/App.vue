@@ -1,7 +1,7 @@
 <script setup>
 // import FoldMessage from './components/FoldMessage/FoldMessage.js'
 // import bubbleMessage from './components/BubbleMessage/BubbleMessage.js'
-import { FoldMessage, BubbleMessage } from '@/components/index.js' // 导入
+import { FoldMessage, BubbleMessage, MessageBox } from '@/components/index.js' // 导入
 
 function testBubble() {
   BubbleMessage({
@@ -17,6 +17,23 @@ function fold() {
     type: 'success'
   })
 }
+function box() {
+  MessageBox({
+    title: 'This is a title',
+    content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing'
+  }).then(() => {
+    console.log('confirm')
+  }).catch(() => {
+    console.log('cancel')
+  })
+  /* MessageBox({
+    title: 'This is a title',
+    content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
+    callback: () => {
+      console.log(1222222)
+    }
+  })*/
+}
 </script>
 
 <template>
@@ -28,17 +45,9 @@ function fold() {
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <div class="demo-container">
-    <div>
-<!--      <FoldMessage />-->
-    </div>
-    <div>
-<!--      <BubbleMessage />-->
-      <button @click="fold">测试折叠</button>
-      <button @click="testBubble">测试气泡</button>
-    </div>
-
-  </div>
+  <button @click="fold">测试折叠</button>
+  <button @click="testBubble">测试气泡</button>
+  <button @click="box">测试弹框</button>
 </template>
 
 <style scoped>

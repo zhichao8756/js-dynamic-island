@@ -1,8 +1,9 @@
 import BubbleMessage from './BubbleMessage/BubbleMessage.js'
 import FoldMessage from './FoldMessage/FoldMessage.js'
+import MessageBox from './MessageBox/MessageBox.js'
 
 // 按需引入
-export { BubbleMessage, FoldMessage }
+export { BubbleMessage, FoldMessage, MessageBox }
 
 /* const component = [BubbleMessage, FoldMessage]
 

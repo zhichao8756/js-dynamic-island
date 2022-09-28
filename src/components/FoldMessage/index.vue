@@ -73,46 +73,7 @@ async function showIsland() {
   const fold = document.getElementsByClassName('fold-container')[0]
   const text = document.getElementsByClassName('message-text')[0]
   fold.classList.add('animateScale')
-
   text.classList.add('animateText')
-
-  /* anime({
-    targets: '.bubble-container',
-    scaleX: [
-      { value: 0, duration: 150, easing: 'linear' }
-      { value: 1, duration: 150, delay: 1000, easing: 'linear' }
-    ],
-    scaleY: [
-      { value: 0, duration: 150, easing: 'linear' }
-      { value: 1, duration: 150, delay: 1000, easing: 'linear' }
-    ],
-    easing: 'linear',
-    duration: 300
-  })*/
-  /* anime({
-    targets: '.fold-container',
-    scaleX: [
-      { value: 1, duration: 150, easing: 'linear' }
-    ],
-    scaleY: [
-      { value: 1, duration: 150, easing: 'linear' }
-    ],
-    easing: 'linear',
-    duration: 300
-  })*/
-  /* anime({
-    targets: '.fold-container',
-    scaleX: [
-      { value: 0, duration: 150, easing: 'linear' },
-      { value: 1, duration: 150, delay: 150, easing: 'linear' }
-    ],
-    scaleY: [
-      { value: 0, duration: 150, easing: 'linear' },
-      { value: 1, duration: 150, delay: 1000, easing: 'linear' }
-    ],
-    easing: 'linear',
-    duration: 300
-  })*/
   await proxy.$utils.sleep(2000)
   disappearIsland()
 }
