@@ -37,12 +37,12 @@
       <!-- 状态栏  -->
       <div class="status-container" >
         <svg v-if="type === 'success'" class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
-          <circle ref="path" class="circle path" cx="16" cy="16" r="16" stroke="#0c3" stroke-width="3" />
+          <circle ref="path" class="circle path" cx="16" cy="16" r="14" stroke="#0c3" stroke-width="3" />
           <path  ref="path" class="check path" d="M9 16l5 5 9-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></path>
         </svg>
         <div v-if="type === 'error'">
           <svg style="margin-top: 6px" class="checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
-            <circle ref="path" class="circle path" cx="16" cy="16" r="16" stroke="#d81e06" stroke-width="3" />
+            <circle ref="path" class="circle path" cx="16" cy="16" r="14" stroke="#d81e06" stroke-width="3" />
             <g ref="path" class="check path">
               <line x1="8" y1="8" x2="22" y2="22" data-v-f6bb0465="" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></line>
               <line x1="22" y1="8" x2="8" y2="22" data-v-f6bb0465="" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></line>
@@ -149,24 +149,12 @@ async function showIsland() {
   await proxy.$utils.sleep(1000)
   drawCircle()
   await proxy.$utils.sleep(2000)
-  disappearIsland()
+  // disappearIsland()
 }
 function drawCircle() {
-  /* const checkTimeline = anime.timeline(
-    { autoplay: true, direction: 'alternate', loop: false }
-  )
-  checkTimeline.add(
-    {
-      targets: '.checkmark',
-      scale: [{ value: [0, 1], duration: 600, easing: 'easeOutQuad', delay: 350 }] }
-  )*/
   anime({
     targets: '.check',
     strokeDasharray: anime.setDashoffset,
-    /* strokeDasharray: [
-      { value: 314, duration: 350, easing: 'linear' },
-      { value: 0, duration: 350, delay: 350, easing: 'linear' }
-    ],*/
     strokeDashoffset: [anime.setDashoffset, 0],
     easing: 'easeInOutSine',
     duration: 1000,
@@ -230,7 +218,7 @@ onBeforeUnmount(() => {
   width: 250px;
   border-radius: 15px;
   padding: 8px 12px;
-  filter: url("#goo");
+  filter: url("#goo") drop-shadow(0px 4px 4px #00000072);
 }
 .message-box {
   display: flex;

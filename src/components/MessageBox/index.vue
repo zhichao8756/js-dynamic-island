@@ -131,6 +131,7 @@ async function doConfirm() {
   min-height: 100px;
   border-radius: 24px;
   padding: 16px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 45%);
 }
 .message-box {
   display: flex;
@@ -164,9 +165,9 @@ async function doConfirm() {
   height: 32px;
 }
 .icon-error {
-  background: url('../../assets/error.png') no-repeat;
+  background: url('../../assets/error.svg') no-repeat;
 }
 .icon-success {
-  background: url('../../assets/success.png') no-repeat;
+  background: url('../../assets/success.svg') no-repeat;
 }
 </style>

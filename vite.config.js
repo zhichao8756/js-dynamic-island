@@ -20,6 +20,9 @@ export default defineConfig({
       }
     }
   },
+  server: {
+    host: '0.0.0.0'
+  },
   build: {
     outDir: 'js-dynamic-island', // 输出文件名称
     lib: {
