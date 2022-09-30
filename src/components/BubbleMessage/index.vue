@@ -149,7 +149,7 @@ async function showIsland() {
   await proxy.$utils.sleep(1000)
   drawCircle()
   await proxy.$utils.sleep(2000)
-  // disappearIsland()
+  disappearIsland()
 }
 function drawCircle() {
   anime({

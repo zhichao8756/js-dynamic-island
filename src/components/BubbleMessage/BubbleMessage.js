@@ -21,7 +21,7 @@ function bubbleMessage({ user, message, avatar, type }) {
   }*/
   // 卸载组件
   window.setTimeout(() => {
-    // unmount()
+    unmount()
   }, 4000)
   const unmount = () => {
     bubbleMessageInstance.unmount()
