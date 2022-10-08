@@ -1,7 +1,8 @@
 <script setup>
 // import FoldMessage from './components/FoldMessage/FoldMessage.js'
 // import bubbleMessage from './components/BubbleMessage/BubbleMessage.js'
-import { FoldMessage, BubbleMessage, MessageBox } from '@/components/index.js' // 导入
+import { FoldMessage, BubbleMessage, MessageBox, ProgressBox } from '@/components/index.js' // 导入
+// import ProgressBox from '@/components/ProgressBox/index.vue'
 
 function testBubble() {
   BubbleMessage({
@@ -27,6 +28,13 @@ function box() {
     console.log('cancel')
   })
 }
+function progress() {
+  ProgressBox({
+    loadingTime: 3000
+  }).then(() => {
+    console.log('done')
+  })
+}
 </script>
 
 <template>
@@ -41,6 +49,7 @@ function box() {
   <button @click="fold">测试折叠</button>
   <button @click="testBubble">测试气泡</button>
   <button @click="box">测试弹框</button>
+  <button @click="progress">测试进度</button>
 </template>
 
 <style scoped>

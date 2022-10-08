@@ -39,8 +39,6 @@ const { proxy } = getCurrentInstance()
 const props = defineProps({
   title: String,
   content: String,
-  onConfirm: Function,
-  onCancel: Function,
   callback: Function
 })
 // events emit
@@ -92,7 +90,7 @@ async function doCancel() {
 }
 async function doConfirm() {
   disappearIsland()
-  await proxy.$utils.sleep(2000)
+  await proxy.$utils.sleep(1200)
   props.callback && props.callback(true)
 }
 </script>
