@@ -1,8 +1,6 @@
 <script setup>
-// import FoldMessage from './components/FoldMessage/FoldMessage.js'
-// import bubbleMessage from './components/BubbleMessage/BubbleMessage.js'
-import { FoldMessage, BubbleMessage, MessageBox, ProgressBox } from '@/components/index.js' // 导入
-// import ProgressBox from '@/components/ProgressBox/index.vue'
+import { FoldMessage, BubbleMessage, MessageBox, ProgressBox, Rate } from '@/components/index.js' // 导入
+// import RateBox from '@/components/Rate/index.vue'
 
 function testBubble() {
   BubbleMessage({
@@ -35,6 +33,11 @@ function progress() {
     console.log('done')
   })
 }
+function like() {
+  Rate({
+    title: '点个赞吧'
+  })
+}
 </script>
 
 <template>
@@ -50,6 +53,7 @@ function progress() {
   <button @click="testBubble">测试气泡</button>
   <button @click="box">测试弹框</button>
   <button @click="progress">测试进度</button>
+  <button @click="like">点个赞吧</button>
 </template>
 
 <style scoped>

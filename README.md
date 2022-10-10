@@ -14,16 +14,19 @@ $ npm i js-dynamic-island
 import { BubbleMessage, FoldMessage, MessageBox } from 'js-dynamic-island'
 import "../node_modules/js-dynamic-island/style.css";
 
+// BubbleMessage
 BubbleMessage({
     user: 'zack',
     message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
     avatar: 'https://joeschmoe.io/api/v1/random',
     type: 'success'
 })
+// FoldMessage
 FoldMessage({
     message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
     type: 'success'
 })
+// MessageBox
 MessageBox({
     title: 'This is a title',
     content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing'
@@ -34,11 +37,16 @@ MessageBox({
     // cancel
     message-container('cancel')
 })
+// ProgressBox
 ProgressBox({
     loadingTime: 3000
 }).then(() => {
     // done
     message-container('done')
+})
+// Rate
+Rate({
+    title: 'like me~'
 })
 ```
 ## API Docs
@@ -76,6 +84,14 @@ ProgressBox({
 | 参数          | 说明   | 类型     | 可选值 | 默认值      |
 |-------------|------|--------|-----|----------|
 | loadingTime | 加载时间 | Number | -   | 5500(ms) |
+
+### Rate
+
+    支持promise异步回调
+
+| 参数    | 说明   | 类型     | 可选值 | 默认值 |
+|-------|------|--------|-----|-----|
+| title | 标题内容 | String | -   | -   |
 ## License
 
 js-dynamic-island is open source software licensed as MIT.
