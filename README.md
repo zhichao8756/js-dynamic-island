@@ -2,6 +2,8 @@
 
 本仓库是消息提示交互动效,灵感来源于出色的IOS dynamic island的动画交互
 <img src="src/assets/exp.gif">
+## [Demo](https://zhichao8756.github.io/deploy-demo/)
+* [https://zhichao8756.github.io/deploy-demo/](https://zhichao8756.github.io/deploy-demo/)
 ## Install
 
 ```bash
@@ -27,16 +29,16 @@ MessageBox({
     content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing'
 }).then(() => {
     // confirm
-    console.log('confirm')
+    message-container('confirm')
 }).catch(() => {
     // cancel
-    console.log('cancel')
+    message-container('cancel')
 })
 ProgressBox({
     loadingTime: 3000
 }).then(() => {
     // done
-    console.log('done')
+    message-container('done')
 })
 ```
 ## API Docs

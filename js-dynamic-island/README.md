@@ -26,38 +26,54 @@ MessageBox({
     title: 'This is a title',
     content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing'
 }).then(() => {
-    console.log('confirm')
+    // confirm
+    message-container('confirm')
 }).catch(() => {
-    console.log('cancel')
+    // cancel
+    message-container('cancel')
+})
+ProgressBox({
+    loadingTime: 3000
+}).then(() => {
+    // done
+    message-container('done')
 })
 ```
 ## API Docs
 ### BubbleMessage
 
 
-| 参数      | 说明   | 类型     | 可选值           |
-|---------|------|--------|---------------|
-| user    | 用户名  | String | -             |
-| message | 提示内容 | String | -             |
-| avatar  | 用户头像 | String | -             |
-| type    | 提示类型 | String | success/error |
+| 参数      | 说明   | 类型     | 可选值  | 默认值                                |
+|---------|------|--------|------------|------------------------------------|
+| user    | 用户名  | String | -          | -                                  |
+| message | 提示内容 | String | -          | success                            |
+| avatar  | 用户头像 | String | -          | https://joeschmoe.io/api/v1/random |
+| type    | 提示类型 | String | success/error | -                                  |
 
 ### FoldMessage
 
 
-| 参数      | 说明   | 类型     | 可选值           |
-|---------|------|--------|---------------|
-| message | 提示内容 | String | -             |
-| type    | 提示类型 | String | success/error |
+| 参数      | 说明   | 类型     | 可选值           | 默认值 |
+|---------|------|--------|---------------|-----|
+| message | 提示内容 | String | -             | - |
+| type    | 提示类型 | String | success/error | -|
 
 ### MessageBox
 
     支持promise异步回调
 
-| 参数      | 说明   | 类型     | 可选值 |
-|---------|------|--------|-----|
-| title   | 提示标题 | String | -   |
-| content | 提示内容 | String | -   |
+| 参数      | 说明   | 类型     | 可选值 | 默认值 |
+|---------|------|--------|-----|----|
+| title   | 提示标题 | String | -   | -  |
+| content | 提示内容 | String | -   |-|
+
+### ProgressBox
+
+    支持promise异步回调
+
+| 参数          | 说明   | 类型     | 可选值 | 默认值      |
+|-------------|------|--------|-----|----------|
+| loadingTime | 加载时间 | Number | -   | 5500(ms) |
 ## License
 
 js-dynamic-island is open source software licensed as MIT.

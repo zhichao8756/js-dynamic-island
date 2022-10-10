@@ -152,7 +152,6 @@ function start() {
     delay: 1000,
     round: 1,
     update: function() {
-      console.log(progress)
       loadingProgress.value.innerHTML = JSON.stringify(progress.value).replace(/^"(.*)"$/, '$1')
     }
   })
