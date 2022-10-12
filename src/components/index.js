@@ -3,9 +3,10 @@ import FoldMessage from './FoldMessage/FoldMessage.js'
 import MessageBox from './MessageBox/MessageBox.js'
 import ProgressBox from './ProgressBox/ProgressBox.js'
 import Rate from './Rate/Rate.js'
+import Spinner from './Spinner/Spinner.js'
 
 // 按需引入
-export { BubbleMessage, FoldMessage, MessageBox, ProgressBox, Rate }
+export { BubbleMessage, FoldMessage, MessageBox, ProgressBox, Rate, Spinner }
 
 /* const component = [BubbleMessage, FoldMessage]
 

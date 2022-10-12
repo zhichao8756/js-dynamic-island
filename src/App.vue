@@ -1,7 +1,7 @@
 <script setup>
 import { FoldMessage, BubbleMessage, MessageBox, ProgressBox, Rate } from '@/components/index.js' // 导入
-// import RateBox from '@/components/Rate/index.vue'
-
+import Spinner from '@/components/Spinner/Spinner.js'
+import utils from '@/utils/utils.js'
 function testBubble() {
   BubbleMessage({
     user: 'zack',
@@ -38,6 +38,11 @@ function like() {
     title: '点个赞吧'
   })
 }
+async function spin() {
+  Spinner.show('加载中')
+  await utils.sleep(3000)
+  Spinner.done()
+}
 </script>
 
 <template>
@@ -54,6 +59,7 @@ function like() {
   <button @click="box">测试弹框</button>
   <button @click="progress">测试进度</button>
   <button @click="like">点个赞吧</button>
+  <button @click="spin">加载中</button>
 </template>
 
 <style scoped>
