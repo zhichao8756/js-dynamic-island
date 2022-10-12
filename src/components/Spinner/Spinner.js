@@ -17,7 +17,6 @@ function Spinner() {
     this.init(title)
     document.body.appendChild(this.parentNode)
     this.spinner.show()
-    console.log('show')
   }
   this.done = async function() {
     await this.spinner.done()
