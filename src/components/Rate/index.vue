@@ -78,7 +78,6 @@ function beforeLeave() {
       easing: 'linear',
       duration: 300,
       complete: function() {
-        console.log(223333333)
         props.callback && props.callback('done')
       }
     })
