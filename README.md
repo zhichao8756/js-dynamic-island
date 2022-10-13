@@ -11,7 +11,7 @@ $ npm i js-dynamic-island
 ```
 ## Quick Start
 ```javascript
-import { BubbleMessage, FoldMessage, MessageBox } from 'js-dynamic-island'
+import { BubbleMessage, FoldMessage, MessageBox, ProgressBox, Rate, Spinner, AddToCart } from 'js-dynamic-island'
 import "../node_modules/js-dynamic-island/style.css";
 
 // BubbleMessage
@@ -21,11 +21,13 @@ BubbleMessage({
     avatar: 'https://joeschmoe.io/api/v1/random',
     type: 'success'
 })
+
 // FoldMessage
 FoldMessage({
     message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
     type: 'success'
 })
+
 // MessageBox
 MessageBox({
     title: 'This is a title',
@@ -37,6 +39,7 @@ MessageBox({
     // cancel
     message-container('cancel')
 })
+
 // ProgressBox
 ProgressBox({
     loadingTime: 3000
@@ -44,15 +47,23 @@ ProgressBox({
     // done
     message-container('done')
 })
+
 // Rate
 Rate({
     title: 'like me~'
 })
+
 // Spinner loading
 Spinner.show('loading...')
 // ...javascript code
 // loading finish
 Spinner.done()
+
+// add to cart
+AddToCart({
+    beforeTitle: 'adding...',
+    afterTitle: 'finish'
+})
 ```
 ## API Docs
 ### BubbleMessage
@@ -105,6 +116,14 @@ Spinner.done()
 |------|---------|
 | show | 显示当前加载框 |
 | done | 加载完成    |
+
+### AddToCart
+
+| 参数          | 说明    | 类型     | 可选值 | 默认值 |
+|-------------|-------|--------|-----|-----|
+| beforeTitle | 添加前标题 | String | -   | -   |
+| afterTitle  | 添加后标题 | String | -   | -   |
+
 ## License
 
 js-dynamic-island is open source software licensed as MIT.
