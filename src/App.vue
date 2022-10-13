@@ -1,5 +1,5 @@
 <script setup>
-import { FoldMessage, BubbleMessage, MessageBox, ProgressBox, Rate, Spinner } from '@/components/index.js' // 导入
+import { FoldMessage, BubbleMessage, MessageBox, ProgressBox, Rate, Spinner, AddToCart } from '@/components/index.js' // 导入
 import utils from '@/utils/utils.js'
 function testBubble() {
   BubbleMessage({
@@ -42,6 +42,12 @@ async function spin() {
   await utils.sleep(3000)
   Spinner.done()
 }
+function addTo() {
+  AddToCart({
+    beforeTitle: '添加至购物车',
+    afterTitle: '完成'
+  })
+}
 </script>
 
 <template>
@@ -59,6 +65,7 @@ async function spin() {
   <button @click="progress">测试进度</button>
   <button @click="like">点个赞吧</button>
   <button @click="spin">加载中</button>
+  <button @click="addTo">添加购物车</button>
 </template>
 
 <style scoped>
