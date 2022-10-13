@@ -1,6 +1,5 @@
 <script setup>
-import { FoldMessage, BubbleMessage, MessageBox, ProgressBox, Rate } from '@/components/index.js' // 导入
-import Spinner from '@/components/Spinner/Spinner.js'
+import { FoldMessage, BubbleMessage, MessageBox, ProgressBox, Rate, Spinner } from '@/components/index.js' // 导入
 import utils from '@/utils/utils.js'
 function testBubble() {
   BubbleMessage({
