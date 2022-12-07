@@ -1,10 +1,13 @@
 # js-dynamic-island
+![U59dIv.png](https://m1.im5i.com/2022/12/07/U59dIv.png)
+## Description
+A message prompt interaction effect, inspired by the excellent IOS dynamic island animation interaction
 
-本仓库是消息提示交互动效,灵感来源于出色的IOS dynamic island的动画交互
-<img src="src/assets/preview.png">
-## [Demo](https://zhichao8756.github.io/deploy-demo/)
-* [https://zhichao8756.github.io/deploy-demo/](https://zhichao8756.github.io/deploy-demo/)
-## Install
+
+### Live Demo
+* [Demo](https://zhichao8756.github.io/deploy-demo/)
+
+### Install
 
 ```bash
 $ npm i js-dynamic-island
@@ -16,41 +19,41 @@ import "../node_modules/js-dynamic-island/style.css";
 
 // BubbleMessage
 BubbleMessage({
-    user: 'zack',
-    message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    type: 'success'
+  user: 'zack',
+  message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
+  avatar: 'https://joeschmoe.io/api/v1/random',
+  type: 'success'
 })
 
 // FoldMessage
 FoldMessage({
-    message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
-    type: 'success'
+  message: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing',
+  type: 'success'
 })
 
 // MessageBox
 MessageBox({
-    title: 'This is a title',
-    content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing'
+  title: 'This is a title',
+  content: 'ot take to heart every thing you hear. do not take to heart every thing you hear. do not spend all; Whenever you find your wrongdoing'
 }).then(() => {
-    // confirm
-    message-container('confirm')
+  // confirm
+  console.log('confirm')
 }).catch(() => {
-    // cancel
-    message-container('cancel')
+  // cancel
+  console.log('cancel')
 })
 
 // ProgressBox
 ProgressBox({
-    loadingTime: 3000
+  loadingTime: 3000
 }).then(() => {
-    // done
-    message-container('done')
+  // done
+  console.log('done')
 })
 
 // Rate
 Rate({
-    title: 'like me~'
+  title: 'like me~'
 })
 
 // Spinner loading
@@ -61,68 +64,68 @@ Spinner.done()
 
 // add to cart
 AddToCart({
-    beforeTitle: 'adding...',
-    afterTitle: 'finish'
+  beforeTitle: 'adding...',
+  afterTitle: 'finish'
 })
 ```
 ## API Docs
 ### BubbleMessage
 
 
-| 参数      | 说明   | 类型     | 可选值  | 默认值                                |
-|---------|------|--------|------------|------------------------------------|
-| user    | 用户名  | String | -          | -                                  |
-| message | 提示内容 | String | -          | success                            |
-| avatar  | 用户头像 | String | -          | https://joeschmoe.io/api/v1/random |
-| type    | 提示类型 | String | success/error | -                                  |
+| Attribute | Description     | type   | Accepted Values | default                            |
+|-----------|-----------------|--------|-----------------|------------------------------------|
+| user      | username        | String | -               | -                                  |
+| message   | message content | String | -               | success                            |
+| avatar    | user avatar     | String | -               | https://joeschmoe.io/api/v1/random |
+| type      | message type    | String | success/error   | -                                  |
 
 ### FoldMessage
 
 
-| 参数      | 说明   | 类型     | 可选值           | 默认值 |
-|---------|------|--------|---------------|-----|
-| message | 提示内容 | String | -             | - |
-| type    | 提示类型 | String | success/error | -|
+| Attribute | Description     | type   | Accepted Values | default |
+|-----------|-----------------|--------|-----------------|---------|
+| message   | message content | String | -               | -       |
+| type      | message type    | String | success/error   | -       |
 
 ### MessageBox
 
-    支持promise异步回调
+    promise callback is supported
 
-| 参数      | 说明   | 类型     | 可选值 | 默认值 |
-|---------|------|--------|-----|----|
-| title   | 提示标题 | String | -   | -  |
-| content | 提示内容 | String | -   |-|
+| Attribute | Description     | type   | Accepted Values | default |
+|-----------|-----------------|--------|-----------------|---------|
+| title     | title           | String | -               | -       |
+| content   | message content | String | -               | -       |
 
 ### ProgressBox
 
-    支持promise异步回调
+     promise callback is supported
 
-| 参数          | 说明   | 类型     | 可选值 | 默认值      |
-|-------------|------|--------|-----|----------|
-| loadingTime | 加载时间 | Number | -   | 5500(ms) |
+| Attribute   | Description  | type   | Accepted Values | default  |
+|-------------|--------------|--------|-----------------|----------|
+| loadingTime | loading time | Number | -               | 5500(ms) |
 
 ### Rate
 
-| 参数    | 说明   | 类型     | 可选值 | 默认值 |
-|-------|------|--------|-----|-----|
-| title | 标题内容 | String | -   | -   |
+| Attribute | Description | type   | Accepted Values | default |
+|-----------|-------------|--------|-----------------|---------|
+| title     | title       | String | -               | -       |
 
 ### Spinner
-| 参数    | 说明   | 类型     | 可选值 | 默认值 |
-|-------|------|--------|-----|-----|
-| title | 加载文字 | String | -   | -   |
-    Spinner实例方法
-| 参数   | 说明      |
-|------|---------|
-| show | 显示当前加载框 |
-| done | 加载完成    |
+| Attribute | Description  | type   | Accepted Values | default |
+|-----------|--------------|--------|-----------------|---------|
+| title     | loading text | String | -               | -       |
+    Spinner methods
+| Attribute | Description           |
+|-----------|-----------------------|
+| show      | show spinner loading  |
+| done      | close spinner loading |
 
 ### AddToCart
 
-| 参数          | 说明    | 类型     | 可选值 | 默认值 |
-|-------------|-------|--------|-----|-----|
-| beforeTitle | 添加前标题 | String | -   | -   |
-| afterTitle  | 添加后标题 | String | -   | -   |
+| Attribute   | Description    | type   | Accepted Values | default |
+|-------------|----------------|--------|-----------------|---------|
+| beforeTitle | title          | String | -               | -       |
+| afterTitle  | complete title | String | -               | -       |
 
 ## License
 

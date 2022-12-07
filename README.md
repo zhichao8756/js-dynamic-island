@@ -1,6 +1,5 @@
 # js-dynamic-island
-<img src="src/assets/preview.png">
-
+![U59dIv.png](https://m1.im5i.com/2022/12/07/U59dIv.png)
 ## Description
 A message prompt interaction effect, inspired by the excellent IOS dynamic island animation interaction
 
