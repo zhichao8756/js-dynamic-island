@@ -1,5 +1,6 @@
 <script setup>
 import { FoldMessage, BubbleMessage, MessageBox, ProgressBox, Rate, Spinner, AddToCart } from '@/components/index.js' // 导入
+import Test from '@/components/test/test.vue'
 import utils from '@/utils/utils.js'
 function testBubble() {
   BubbleMessage({
