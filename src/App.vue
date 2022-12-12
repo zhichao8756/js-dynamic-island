@@ -67,6 +67,7 @@ function addTo() {
   <button @click="like">点个赞吧</button>
   <button @click="spin">加载中</button>
   <button @click="addTo">添加购物车</button>
+  <Test></Test>
 </template>
 
 <style scoped>
